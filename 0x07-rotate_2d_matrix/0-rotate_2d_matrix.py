@@ -1,14 +1,26 @@
 #!/usr/bin/python3
-""" Documentation for the Interview question """
+"""
+Rotate 2D Matrix
+"""
 
 
 def rotate_2d_matrix(matrix):
-    """ Rotato a two dimensional matrix 90 deg clockwise """
-    size = len(matrix)
-    for i in range(size // 2):
-        for j in range(i, size - i - 1):
-            temp = matrix[i][j]
-            matrix[i][j] = matrix[size - 1 - j][i]
-            matrix[size - 1 - j][i] = matrix[size - 1 - i][size - 1 - j]
-            matrix[size - 1 - i][size - 1 - j] = matrix[j][size - 1 - i]
-            matrix[j][size - 1 - i] = temp
+    """rotate two dimension matrix 90 degrees clockwise
+    Args:
+        matrix (list[[list]]): a matrix
+    """
+    n = len(matrix)
+    for i in range(int(n / 2)):
+        y = (n - i - 1)
+        for j in range(i, y):
+            x = (n - 1 - j)
+            # current number
+            tmp = matrix[i][j]
+            # change top for left
+            matrix[i][j] = matrix[x][i]
+            # change left for bottom
+            matrix[x][i] = matrix[y][x]
+            # change bottom for right
+            matrix[y][x] = matrix[j][y]
+            # change right for top
+            matrix[j][y] = tmp
